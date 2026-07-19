@@ -180,7 +180,7 @@ jobs:
             echo "============================================================"
             echo "Application : RapLab Pro"
             echo "Package     : dev.ghostbuilderdev.raplabpro.raplabpro.a07mfop2"
-            echo "Version     : 2.5 (206647915)"
+            echo "Version     : 2.5 (206648052)"
             echo "Date UTC    : $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
             echo "Dépôt       : ${{ github.repository }}"
             echo "Branche     : ${{ github.ref_name }}"
@@ -350,13 +350,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p apk-output
-          APK_FILE="apk-output/RapLab-Pro-dev.ghostbuilderdev.raplabpro.raplabpro.a07mfop2-v206647915-debug.apk"
+          APK_FILE="apk-output/RapLab-Pro-dev.ghostbuilderdev.raplabpro.raplabpro.a07mfop2-v206648052-debug.apk"
           cp generated/app/build/outputs/apk/debug/app-debug.apk "$APK_FILE"
 
           {
             echo "APK=$APK_FILE"
             echo "PACKAGE_ATTENDU=dev.ghostbuilderdev.raplabpro.raplabpro.a07mfop2"
-            echo "VERSION_CODE_ATTENDU=206647915"
+            echo "VERSION_CODE_ATTENDU=206648052"
             echo "SHA256=$(sha256sum "$APK_FILE" | awk '{print $1}')"
             "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK_FILE" | head -n 8
             "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK_FILE"
@@ -366,7 +366,7 @@ jobs:
           ACTUAL_VERSION=$("$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK_FILE" | awk -F"'" '/^package: name=/{print $4; exit}')
 
           [ "$ACTUAL_PACKAGE" = "dev.ghostbuilderdev.raplabpro.raplabpro.a07mfop2" ] || exit 1
-          [ "$ACTUAL_VERSION" = "206647915" ] || exit 1
+          [ "$ACTUAL_VERSION" = "206648052" ] || exit 1
 
       - name: Publier l’APK comme artefact
         if: success()
